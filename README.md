@@ -1,2 +1,154 @@
+# HTML Form Validation Using JavaScript
+
+This project demonstrates the implementation of front-end form validation using HTML, CSS, and pure JavaScript. Two forms, SignIn and SignUp, have been created to showcase different input field validations.
+
+## Features
+
+### SignIn Form
+- Includes two fields: username and password.
+- Basic validation ensures that neither field is left empty.
+
+### SignUp Form
+- Consists of at least 8 fields of different types to demonstrate front-end validation.
+- Custom validations include:
+  - Password must contain special and numeric characters.
+  - Email address must be in a valid format.
+  - Age must be a valid number within a specified range.
+  - You can set additional custom validations as needed.
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+
 # sign_in-and-sign_up-Form-Validation
 Form validation using html,css and javascrip.
+CODE:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="signInForm" onsubmit="return validateSignIn()">
+        <h2>SignIn Form</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="usernameSignIn" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="passwordSignIn" required>
+
+        <button type="submit">Sign In</button>
+    </form>
+
+    <form id="signUpForm" onsubmit="return validateSignUp()">
+        <h2>SignUp Form</h2>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="passwordSignUp">Password:</label>
+        <input type="password" id="passwordSignUp" required>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" pattern="[0-9]{10}" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+        function validateSignIn() {
+            var username = document.getElementById('usernameSignIn').value;
+            var password = document.getElementById('passwordSignIn').value;
+
+            if (username === '' || password === '') {
+                alert('Username and Password are required');
+                return false;
+            }
+
+        
+
+            return true;
+        }
+
+        function validateSignUp() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('passwordSignUp').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var age = document.getElementById('age').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+
+            if (firstName === '' || lastName === '' || email === '' || password === '' || confirmPassword === '' || age === '' || phoneNumber === '') {
+                alert('All fields are required');
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return false;
+            }
+
+            if (isNaN(age) || age < 18 || age > 99) {
+                alert('Age must be a valid number between 18 and 99');
+                return false;
+            }
+
+         
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>
